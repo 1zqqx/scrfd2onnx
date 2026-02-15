@@ -347,6 +347,46 @@ torch.Size([1, 800, 10])
 
 在自己电脑上配置环境转换时不推荐的，依赖的某些库（mmcv）对版本要求比较苛刻，最后在 autodl 上租了个实例才成功。需要显卡。
 配置：
+
+---
+
+```text
+python -u tools/scrfd2onnx.py ./configs/scrfd/scrfd_10g.py ./models.onnx/SCRFD_10G.pth \
+    --input-img ./frame_0017_640.png  \
+    --shape 640 640 \
+    --output-file ./models.onnx/SCRFD_10G.onnx \
+    --verify
+
+SCRFD_10G_KPS:
+in-onnx-export torch.Size([1, 2, 80, 80]) torch.Size([1, 8, 80, 80])
+in-onnx-export torch.Size([1, 2, 40, 40]) torch.Size([1, 8, 40, 40])
+in-onnx-export torch.Size([1, 2, 20, 20]) torch.Size([1, 8, 20, 20])
+single_stage.py in-onnx-export
+<class 'tuple'>
+torch.Size([1, 12800, 1])
+torch.Size([1, 3200, 1])
+torch.Size([1, 800, 1])
+torch.Size([1, 12800, 4])
+torch.Size([1, 3200, 4])
+torch.Size([1, 800, 4])
+torch.Size([1, 12800, 10])
+torch.Size([1, 3200, 10])
+torch.Size([1, 800, 10])
+
+SCRFD_10G:
+in-onnx-export torch.Size([1, 2, 80, 80]) torch.Size([1, 8, 80, 80])
+in-onnx-export torch.Size([1, 2, 40, 40]) torch.Size([1, 8, 40, 40])
+in-onnx-export torch.Size([1, 2, 20, 20]) torch.Size([1, 8, 20, 20])
+single_stage.py in-onnx-export
+<class 'tuple'>
+torch.Size([1, 12800, 1])
+torch.Size([1, 3200, 1])
+torch.Size([1, 800, 1])
+torch.Size([1, 12800, 4])
+torch.Size([1, 3200, 4])
+torch.Size([1, 800, 4])
+```
+
 ```
 PyTorch  1.10.0
 Python  3.8(ubuntu20.04)
